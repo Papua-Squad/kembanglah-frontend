@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kembanglah/screen/home_screen.dart';
 
 class LoginMitraScreen extends StatefulWidget {
   @override
@@ -74,7 +75,7 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen()), (route) => false);
                         }
                       },
                       child: Text(
@@ -82,7 +83,21 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                         style: TextStyle(),
                       )),
                 ),
-
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Text("Don't have account?"),
+                ),
+                Center(
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      )),
+                )
               ],
             ),
           ),
