@@ -12,12 +12,24 @@ class OnBoardingTwoScreen extends StatelessWidget {
         body: Center(
             child: Column(
             children: [
-              SizedBox(height: 300),
-              Center(
-                child: Image.asset(''),
+              SizedBox(height: 100),
+              Image.asset('assets/onboarding_dua.png'),
+              SizedBox(
+                height: 100,
+              ),
+              Text(
+                "Mudahkan Hidupmu",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              Padding(padding: EdgeInsets.all(10),
+                child: Text(
+                  "Tidak perlu keluar rumah, tidak perlu bermacet-macet, berbelanja bunga hanya dalam genggaman.",
+                  style: TextStyle(fontSize: 14),
+                  textAlign: TextAlign.center,
+                ),
               ),
               SizedBox(
-                height: 200,
+                height: 100,
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -33,7 +45,7 @@ class OnBoardingTwoScreen extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   },
-                  child: Text('NEXT')),
+                  child: Text('Mulai')),
               SizedBox(
                 height: 10,
               ),

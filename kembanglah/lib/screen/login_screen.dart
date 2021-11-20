@@ -12,12 +12,15 @@ class LoginScreen extends StatelessWidget {
         body: Center(
             child: Column(
       children: [
-              SizedBox(height: 300),
+              SizedBox(height: 200),
               Center(
-                child: Image.asset(''),
+                child: Image.asset('assets/LOGO.png'),
+              ),
+              Center(
+                child: Image.asset('assets/kembanglah.png'),
               ),
               SizedBox(
-                height: 200,
+                height: 100,
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
