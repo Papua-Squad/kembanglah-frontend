@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kembanglah/custom_widget/custom_button.dart';
+import 'package:kembanglah/custom_widget/custom_dana.dart';
 
 class PencairanDanaScreen extends StatefulWidget {
   const PencairanDanaScreen({Key? key}) : super(key: key);
@@ -85,6 +87,27 @@ class _PencairanDanaScreenState extends State<PencairanDanaScreen> {
                   ),
                 ),
               ),
+            ),
+          ),
+          Positioned(
+            top: 250,
+            left: 24,
+            child: CustomDana(),
+          ),
+          Positioned(
+            top: 540,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: CustomButton(),
+            ),
+          ),
+          Positioned(
+            top: 600,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: CustomButton(),
             ),
           )
         ],
