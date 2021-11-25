@@ -87,13 +87,36 @@ class BerandaScreen extends StatelessWidget{
       body: Stack(
         clipBehavior: Clip.none,
         children: [
-          Container(color: Color(0xff00A38C),height: 300,child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 10,),
-              Text("Hello, Welcome Mitra",style: TextStyle(color: Colors.white,fontSize: 24),)
-            ],
-          ),),
+          Container(
+              padding: EdgeInsets.all(25),
+              color: Color(0xff00A38C),height: 300,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 50,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Hello,",style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
+                          Text("Welcome",style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
+                          Text("MITRA",style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),)
+                        ],
+                      )
+                    ],),
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundColor: Color(0xff74EDED),
+                      backgroundImage: AssetImage('assets/profile_pic.png'),
+                    ),
+                ],),
+
+              ],)
+            ),
           Container(
             margin:const EdgeInsets.only(top: 200),
             child:  GridView.count(
