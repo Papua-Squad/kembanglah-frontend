@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:kembanglah/dana_penjualan_screen.dart';
+import 'package:kembanglah/history_pengeluaran_screen.dart';
 import 'package:kembanglah/login_mitra_screen.dart';
 import 'package:kembanglah/login_screen.dart';
 import 'package:kembanglah/onboardingone_screen.dart';
+import 'package:kembanglah/pencairan_dana_screen.dart';
 import 'package:kembanglah/regist_mitra_screen.dart';
 import 'package:kembanglah/splash_screen.dart';
+import 'package:kembanglah/transaksi_masuk_screen.dart';
+import 'package:kembanglah/transaksi_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,12 +21,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/splash_screen',
+      initialRoute: '/pencairan_dana_screen',
       routes: {
         '/splash_screen': (context) => const SplashScreen(),
         '/onboarding_one': (context) => const OnBoardingOneScreen(),
         '/login_page': (context) => const LoginScreen(),
         '/regist_page': (context) => const RegistMitraScreen(),
+        '/transaksi_screen': (context) => const TransaksiScreen(),
+        '/dana_penjualan_screen': (context) => const DanaPenjualanScreen(),
+        '/transaksi_masuk_screen': (context) => const TransaksiMasuk(),
+        '/history_pengeluaran_screen': (context) =>
+            const HistoryPengeluaranScreen(),
+        '/pencairan_dana_screen': (context) => const PencairanDanaScreen(),
       },
     );
   }
