@@ -4,6 +4,7 @@ import 'package:kembanglah/history_pengeluaran_screen.dart';
 import 'package:kembanglah/login_mitra_screen.dart';
 import 'package:kembanglah/login_screen.dart';
 import 'package:kembanglah/onboardingone_screen.dart';
+import 'package:kembanglah/pencairan_dana_screen.dart';
 import 'package:kembanglah/regist_mitra_screen.dart';
 import 'package:kembanglah/splash_screen.dart';
 import 'package:kembanglah/transaksi_masuk_screen.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/history_pengeluaran_screen',
+      initialRoute: '/dana_penjualan_screen',
       routes: {
         '/splash_screen': (context) => const SplashScreen(),
         '/onboarding_one': (context) => const OnBoardingOneScreen(),
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/transaksi_masuk_screen': (context) => const TransaksiMasuk(),
         '/history_pengeluaran_screen': (context) =>
             const HistoryPengeluaranScreen(),
+        '/pencairan_dana_screen': (context) => const PencairanDanaScreen(),
       },
     );
   }
