@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:kembanglah/dana_penjualan_screen.dart';
-import 'package:kembanglah/history_pengeluaran_screen.dart';
+import 'package:kembanglah/screen/dana_penjualan_screen.dart';
+import 'package:kembanglah/screen/history_pengeluaran_screen.dart';
 import 'package:kembanglah/screen//login_screen.dart';
 import 'package:kembanglah/screen/onboardingone_screen.dart';
-import 'package:kembanglah/pencairan_dana_screen.dart';
-import 'package:kembanglah/regist_mitra_screen.dart';
-import 'package:kembanglah/splash_screen.dart';
-import 'package:kembanglah/transaksi_masuk_screen.dart';
-import 'package:kembanglah/transaksi_screen.dart';
+import 'package:kembanglah/screen/pencairan_dana_screen.dart';
+import 'package:kembanglah/screen/regist_mitra_screen.dart';
+import 'package:kembanglah/screen/splash_screen.dart';
+import 'package:kembanglah/screen/transaksi_masuk_screen.dart';
+import 'package:kembanglah/screen/transaksi_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         '/dana_penjualan_screen': (context) => const DanaPenjualanScreen(),
         '/transaksi_masuk_screen': (context) => const TransaksiMasuk(),
         '/history_pengeluaran_screen': (context) =>
-        const HistoryPengeluaranScreen(),
+            const HistoryPengeluaranScreen(),
         '/pencairan_dana_screen': (context) => const PencairanDanaScreen(),
       },
     );
