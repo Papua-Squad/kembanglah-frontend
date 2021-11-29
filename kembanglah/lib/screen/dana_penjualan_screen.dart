@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kembanglah/custom_widget/custom_bottom_nav.dart';
 
 class DanaPenjualanScreen extends StatefulWidget {
@@ -11,10 +12,7 @@ class DanaPenjualanScreen extends StatefulWidget {
 class _DanaPenjualanScreenState extends State<DanaPenjualanScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff00A38C),
-      ),
+    return Scaffold(  
       body: Stack(
         children: [
           Positioned(
@@ -99,7 +97,7 @@ class _DanaPenjualanScreenState extends State<DanaPenjualanScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // get provider read
+                        Get.toNamed('/PencairanDanaScreen');
                       },
                       child: Container(
                         height: 70,
@@ -123,7 +121,7 @@ class _DanaPenjualanScreenState extends State<DanaPenjualanScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // get provider read
+                        Get.toNamed('/HistoryPengeluaranScreen');
                       },
                       child: Container(
                         height: 70,
@@ -147,7 +145,7 @@ class _DanaPenjualanScreenState extends State<DanaPenjualanScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // get provider read
+                        Get.toNamed('/HistoryPemasukanScreen');
                       },
                       child: Container(
                         height: 70,
@@ -176,7 +174,6 @@ class _DanaPenjualanScreenState extends State<DanaPenjualanScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

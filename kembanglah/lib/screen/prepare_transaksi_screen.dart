@@ -13,9 +13,7 @@ class _PrepareTransaksiScreenState extends State<PrepareTransaksiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff00A38C),
-      ),
+     
       body: Stack(
         children: [
           Positioned(
@@ -31,7 +29,7 @@ class _PrepareTransaksiScreenState extends State<PrepareTransaksiScreen> {
                 children: [
                   RichText(
                     text: TextSpan(
-                      text: "Data Transaksi Masuk",
+                      text: "Prepare Order Transaksi",
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
@@ -147,7 +145,6 @@ class _PrepareTransaksiScreenState extends State<PrepareTransaksiScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigation(),
     );
   }
 }
