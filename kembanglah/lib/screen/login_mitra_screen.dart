@@ -26,7 +26,7 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
         Container(
           child: Align(
           alignment: Alignment.center,
-          child: Image.asset('assets/login_screen_ilustration.png',),
+          child: Image.asset('assets/images/login_screen_ilustration.png',),
         ),),
         Container(
           padding: EdgeInsets.all(25),
@@ -50,7 +50,7 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                         child:  Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image.asset('assets/kembanglah.png'),
+                            Center(child: Image.asset('assets/images/kembanglah.png'),),
                             SizedBox(height: 10,),
                             TextFormField(
                               controller: Controller1,
@@ -112,7 +112,8 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                             ),
                             Center(
                               child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                  },
                                   child: Text(
                                     "Sign Up",
                                     style: TextStyle(

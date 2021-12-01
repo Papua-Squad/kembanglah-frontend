@@ -26,9 +26,12 @@ class AddCategoryScreen extends StatelessWidget{
                   TextFormField(
                     controller: Controller1,
                     decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xff00A38C),
+                      border: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xff00A38C),)
+                      ),
                       labelText: "Nama Kategori",
+                      labelStyle: TextStyle(color: Color(0xff00A38C),),
                       contentPadding: EdgeInsets.all(20.0),
                     ),
                     validator: (value) {
@@ -42,7 +45,12 @@ class AddCategoryScreen extends StatelessWidget{
                   TextFormField(
                     controller: Controller2,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xff00A38C),)
+                      ),
+                      border: OutlineInputBorder(
+                      ),
+                      labelStyle: TextStyle(color: Color(0xff00A38C),),
                       labelText: "Jenis Kategori",
                       contentPadding: EdgeInsets.all(20.0),
                     ),

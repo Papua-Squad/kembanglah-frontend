@@ -13,7 +13,7 @@ class OnBoardingTwoScreen extends StatelessWidget {
             child: Column(
             children: [
               SizedBox(height: 100),
-              Image.asset('assets/onboarding_dua.png'),
+              Image.asset('assets/images/onboarding_dua.png'),
               SizedBox(
                 height: 100,
               ),

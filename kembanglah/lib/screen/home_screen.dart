@@ -34,15 +34,15 @@ class _HomeScreen extends State<HomeScreen>{
         },
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset('assets/navbar_home.png'),
+            icon: Image.asset('assets/images/navbar_home.png'),
             title: Text(""),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/navbar_transaksi.png'),
+            icon: Image.asset('assets/images/navbar_transaksi.png'),
             title: Text(""),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/navbar_profile.png'),
+            icon: Image.asset('assets/images/navbar_profile.png'),
             title: Text(""),
           ),
         ],
@@ -68,12 +68,12 @@ class BerandaScreen extends StatelessWidget{
 
     ];
     List icon = [
-      "assets/icon_product.png",
-      "assets/icon_category.png",
-      "assets/icon_best_seller.png",
-      "assets/icon_recomended_product.png",
-      "assets/icon_list.png",
-      "assets/icon_info.png"
+      "assets/images/icon_product.png",
+      "assets/images/icon_category.png",
+      "assets/images/icon_best_seller.png",
+      "assets/images/icon_recomended_product.png",
+      "assets/images/icon_list.png",
+      "assets/images/icon_info.png"
     ];
     List Page = <Widget>[
         AddProductScreen(),
@@ -111,7 +111,7 @@ class BerandaScreen extends StatelessWidget{
                     CircleAvatar(
                       radius: 40,
                       backgroundColor: Color(0xff74EDED),
-                      backgroundImage: AssetImage('assets/profile_pic.png'),
+                      backgroundImage: AssetImage('assets/images/profile_pic.png'),
                     ),
                 ],),
 
@@ -141,7 +141,6 @@ class BerandaScreen extends StatelessWidget{
               );
             }),
           ),)
-
         ],
       )
       );

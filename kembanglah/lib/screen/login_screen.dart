@@ -14,10 +14,10 @@ class LoginScreen extends StatelessWidget {
       children: [
               SizedBox(height: 200),
               Center(
-                child: Image.asset('assets/LOGO.png'),
+                child: Image.asset('assets/images/LOGO.png'),
               ),
               Center(
-                child: Image.asset('assets/kembanglah.png'),
+                child: Image.asset('assets/images/kembanglah.png'),
               ),
               SizedBox(
                 height: 100,
