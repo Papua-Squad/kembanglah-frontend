@@ -17,10 +17,10 @@ class InfoScreen extends StatelessWidget{
                 children: [
                   SizedBox(height: 100,),
                   Center(
-                    child:  Image.asset("assets/LOGO.png"),
+                    child:  Image.asset("assets/images/LOGO.png"),
                   ),
                   Center(
-                    child: Image.asset("assets/kembanglah.png"),
+                    child: Image.asset("assets/images/kembanglah.png"),
                   ),
                   Center(
                     child:  Text("#BerkembangBersama",style: TextStyle(fontSize: 20,color: Color(0xff00A38C)),),

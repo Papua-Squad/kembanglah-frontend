@@ -15,24 +15,24 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
       const Duration(seconds: 3),
-      () => Get.toNamed('/OnBoardingOne'),
+      () => Get.offAllNamed('/OnBoardingOne'),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 30),
-          SizedBox(
-            width: 480,
-            height: 480,
-            child: Image.asset('assets/images/splash.png',
-                width: 480, height: 480),
-          ),
-        ],
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 30),
+              SizedBox(
+                child: Image.asset('assets/images/splash.png',
+                    width: 480, height: 480),
+              ),
+          ],
+        ),
       ),
     );
   }

@@ -21,12 +21,20 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
         backgroundColor: Color(0xff00A38C),
       ),
       body: SingleChildScrollView(
-        child: Stack(clipBehavior: Clip.none, children: [
-          Container(
-            child: Align(
-              alignment: Alignment.center,
-              child: Image.asset(
-                'assets/login_screen_ilustration.png',
+        child: Stack(
+            clipBehavior: Clip.none, children: [
+          Positioned(
+            top: 0,
+            right: 0,
+            left: 0,
+            child: Container(
+              height: 210,
+              width: 360,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/header.png"),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ),
@@ -53,7 +61,7 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image.asset('assets/kembanglah.png'),
+                              Image.asset('assets/images/kembanglah.png'),
                               SizedBox(
                                 height: 10,
                               ),
@@ -61,9 +69,12 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                 controller: Controller1,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Color(0xff00A38C),)
+                                  ),
                                   labelText: "Username",
-                                  contentPadding: EdgeInsets.all(20.0),
-                                ),
+                                  labelStyle: TextStyle(color: Color(0xff00A38C),),
+                                  contentPadding: EdgeInsets.all(20.0),),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Masukan Username !';
@@ -79,9 +90,12 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                 autocorrect: false,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Color(0xff00A38C),)
+                                  ),
                                   labelText: "Password",
-                                  contentPadding: EdgeInsets.all(20.0),
-                                ),
+                                  labelStyle: TextStyle(color: Color(0xff00A38C),),
+                                  contentPadding: EdgeInsets.all(20.0),),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Masukan Password !';

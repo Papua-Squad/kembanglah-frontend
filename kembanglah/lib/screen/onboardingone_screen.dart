@@ -16,7 +16,7 @@ class OnBoardingOneScreen extends StatelessWidget {
       children: [
         SizedBox(height: 100),
         Center(
-          child: Image.asset('assets/onboarding_satu.png'),
+          child: Image.asset('assets/images/onboarding_satu.png'),
         ),
         SizedBox(
           height: 100,
