@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:http/http.dart';
+import 'package:http/http.dart';
+import 'package:kembanglah/api/url_api.dart';
 
 class RegistMitraScreen extends StatefulWidget {
   const RegistMitraScreen({Key? key}) : super(key: key);
@@ -17,9 +23,6 @@ class _RegistMitraScreenState extends State<RegistMitraScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff00A38C),
-      ),
       body: Stack(children: [
         Positioned(
           top: 0,
@@ -37,11 +40,11 @@ class _RegistMitraScreenState extends State<RegistMitraScreen> {
           ),
         ),
         Positioned(
-          top: 190,
+          top: 160,
           left: 0,
           right: 0,
           child: Container(
-            height: 450,
+            height: 500,
             padding: EdgeInsets.all(15),
             width: MediaQuery.of(context).size.width - 40,
             margin: EdgeInsets.symmetric(horizontal: 20),
@@ -84,27 +87,77 @@ class _RegistMitraScreenState extends State<RegistMitraScreen> {
           ),
         ),
         Positioned(
-          top: 570,
+          top: 540,
           right: 0,
           left: 0,
           child: Center(
-            child: Container(
-              margin: EdgeInsets.all(5),
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Color(0xff00A38C),
-                    minimumSize: Size(350, 60),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ), // double.infinity is the width and 30 is the height
-                  ),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
-                  },
-                  child: Text(
-                    'REGISTER',
-                    style: TextStyle(),
-                  )),
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(5),
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xff00A38C),
+                        minimumSize: Size(340, 60),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ), // double.infinity is the width and 30 is the height
+                      ),
+                      onPressed: () async {
+                        Response response = await post(
+                          Uri.parse('http://159.223.82.24:3000/register'),
+                          headers: {'Content-Type': 'application/json'},
+                          body: json.encode({
+                            'full_name': ControllerMitra.text,
+                            'email': ControllerEmail.text,
+                            'username': ControllerUsername.text,
+                            'password': ControllerPassword.text,
+                            'role': "mitra"
+                          }),
+                        );
+                        print(response.body);
+                        if (_formKey.currentState!.validate() &&
+                            response.statusCode == 200) {
+                          Get.toNamed('/LoginMitraScreen');
+                        } else {
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text(
+                                  'Pemberitahuan Username/Password salah'),
+                              content: const Text(
+                                  'Apakah Username & Password anda masukan benar?'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () =>
+                                      Get.off('/RegistMitraScreen'),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+                      },
+                      child: Text(
+                        'REGISTER',
+                        style: TextStyle(),
+                      )),
+                ),
+                Center(
+                  child: Text("Already have account?"),
+                ),
+                Center(
+                  child: TextButton(
+                      onPressed: () {
+                        Get.offNamed('/LoginMitraScreen');
+                      },
+                      child: Text(
+                        "Sign In",
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      )),
+                )
+              ],
             ),
           ),
         )
