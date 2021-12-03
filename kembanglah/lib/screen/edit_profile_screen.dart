@@ -132,7 +132,7 @@ class EditProfile extends StatelessWidget{
                         onPressed: () {
 
                         },
-                        child: Text('Tambah Kategori')),
+                        child: Text('Simpan Perubahan')),
                     SizedBox(height: 15,),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -150,7 +150,7 @@ class EditProfile extends StatelessWidget{
 
                         },
                         child: Text(
-                          'Edit Kategori',
+                          'Batal',
                           style: TextStyle(
                             color: Color(0xff00A38C),
                           ),
