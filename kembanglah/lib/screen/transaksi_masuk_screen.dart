@@ -13,9 +13,6 @@ class _TransaksiMasukState extends State<TransaksiMasuk> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff00A38C),
-      ),
       body: Stack(
         children: [
           Positioned(
@@ -147,7 +144,6 @@ class _TransaksiMasukState extends State<TransaksiMasuk> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

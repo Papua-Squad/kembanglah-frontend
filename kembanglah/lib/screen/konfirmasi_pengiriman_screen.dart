@@ -15,9 +15,6 @@ class _KonfirmasiPengirimanScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff00A38C),
-      ),
       body: Stack(
         children: [
           Positioned(
@@ -149,7 +146,6 @@ class _KonfirmasiPengirimanScreenState
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

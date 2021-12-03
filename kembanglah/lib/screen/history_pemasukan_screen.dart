@@ -13,6 +13,7 @@ class _HistoryPemasukanScreenState extends State<HistoryPemasukanScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff00A38C),
+        title: Text('History Pemasukan'),
       ),
       body: CardList(),
     );
@@ -36,7 +37,7 @@ class CardList extends StatelessWidget {
               Icons.call_received_outlined,
               color: Color(0xff00A38C),
             ),
-            title: Text("ID PENGELUARAN"),
+            title: Text("ID PEMASUKAN"),
             subtitle: Text("17 November 2021"),
             trailing: Text(
               "+ Rp500.000",

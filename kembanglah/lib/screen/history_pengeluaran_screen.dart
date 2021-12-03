@@ -14,6 +14,7 @@ class _HistoryPengeluaranScreenState extends State<HistoryPengeluaranScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff00A38C),
+        title: Text('History Pencairan'),
       ),
       body: CardList(),
     );

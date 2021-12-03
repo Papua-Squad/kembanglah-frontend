@@ -22,15 +22,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Image.asset('assets/navbar_home.png'),
             title: Text(""),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.call_to_action),
+            icon: Image.asset('assets/navbar_transaksi.png'),
             title: Text(""),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
+            icon: Image.asset('assets/navbar_profile.png'),
             title: Text(""),
           ),
         ],

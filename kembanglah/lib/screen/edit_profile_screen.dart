@@ -1,20 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AddProductScreen extends StatelessWidget{
+class EditProfile extends StatelessWidget{
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Controller2 = TextEditingController();
   final Controller1 = TextEditingController();
-  final Controller3 = TextEditingController();
-  final Controller4 = TextEditingController();
-  final Controller5 = TextEditingController();
-  final Controller6 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
         appBar: AppBar(
-          title: Text("Tambah Product"),
+          title: Text("Edit Profile"),
           centerTitle: true,backgroundColor: Color(0xff00A38C),),
         body: SingleChildScrollView(
           child:  Container(
@@ -25,6 +21,7 @@ class AddProductScreen extends StatelessWidget{
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 10,),
                     TextFormField(
                       controller: Controller1,
                       decoration: InputDecoration(
@@ -32,13 +29,13 @@ class AddProductScreen extends StatelessWidget{
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Color(0xff00A38C),)
                         ),
-                        labelText: "Nama Produk",
+                        labelText: "Nama Mitra",
                         labelStyle: TextStyle(color: Color(0xff00A38C),),
                         contentPadding: EdgeInsets.all(20.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Masukan Nama Produk !';
+                          return 'Masukan Nama Mitra !';
                         }
                         return null;
                       },
@@ -47,98 +44,83 @@ class AddProductScreen extends StatelessWidget{
                     TextFormField(
                       controller: Controller2,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Color(0xff00A38C),)
                         ),
-                        labelText: "Harga Produk",
+                        border: OutlineInputBorder(
+                        ),
                         labelStyle: TextStyle(color: Color(0xff00A38C),),
+                        labelText: "Username",
                         contentPadding: EdgeInsets.all(20.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Masukan Harga Produk !';
+                          return 'Masukan Username!';
                         }
                         return null;
                       },
                     ),
                     SizedBox(height: 20,),
                     TextFormField(
-                      controller: Controller3,
+                      controller: Controller2,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Color(0xff00A38C),)
                         ),
-                        labelText: "Stok Produk",
+                        border: OutlineInputBorder(
+                        ),
                         labelStyle: TextStyle(color: Color(0xff00A38C),),
+                        labelText: "Password",
                         contentPadding: EdgeInsets.all(20.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Masukan Stok Kategori !';
+                          return 'Masukan Password!';
                         }
                         return null;
                       },
                     ),
                     SizedBox(height: 20,),
                     TextFormField(
-                      controller: Controller3,
+                      controller: Controller2,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Color(0xff00A38C),)
                         ),
-                        labelText: "Berat Produk",
+                        border: OutlineInputBorder(
+                        ),
                         labelStyle: TextStyle(color: Color(0xff00A38C),),
+                        labelText: "Ulangi Password",
                         contentPadding: EdgeInsets.all(20.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Masukan Berat Produk !';
+                          return 'Masukan Validasi Password!';
                         }
                         return null;
                       },
                     ),
                     SizedBox(height: 20,),
                     TextFormField(
-                      controller: Controller3,
+                      controller: Controller2,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Color(0xff00A38C),)
                         ),
-                        labelText: "Jenis Produk",
+                        border: OutlineInputBorder(
+                        ),
                         labelStyle: TextStyle(color: Color(0xff00A38C),),
+                        labelText: "Upload Foto",
                         contentPadding: EdgeInsets.all(20.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Masukan Jenis Produk !';
+                          return 'Masukan Foto!';
                         }
                         return null;
                       },
                     ),
-                    SizedBox(height: 20,),
-                    TextFormField(
-                      controller: Controller3,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff00A38C),)
-                        ),
-                        labelText: "Deskripsi Produk",
-                        labelStyle: TextStyle(color: Color(0xff00A38C),),
-                        contentPadding: EdgeInsets.all(20.0),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Masukan Deskripsi Produk !';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 40,),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xff00A38C),
@@ -150,7 +132,7 @@ class AddProductScreen extends StatelessWidget{
                         onPressed: () {
 
                         },
-                        child: Text('Tambah Produk')),
+                        child: Text('Tambah Kategori')),
                     SizedBox(height: 15,),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -168,7 +150,7 @@ class AddProductScreen extends StatelessWidget{
 
                         },
                         child: Text(
-                          'Edit Produk',
+                          'Edit Kategori',
                           style: TextStyle(
                             color: Color(0xff00A38C),
                           ),
@@ -181,5 +163,5 @@ class AddProductScreen extends StatelessWidget{
         )
     );
   }
-
+  
 }
