@@ -36,7 +36,7 @@ class ApiLogin{
   Future<LoginModel> login({
     required String username,
     required String password,
-  }) async {
+    }) async {
     Response _response = await post(
       Uri.parse(ConstUrl.baseUrl + 'login'),
       body: <String, dynamic>{
@@ -45,7 +45,8 @@ class ApiLogin{
       },
     );
     if (_response.statusCode == 200) {
-      final LoginModel responseData = LoginModel.fromJson(_response.body);
+      final jsonData = json.decode(_response.body);
+      final LoginModel responseData = LoginModel.fromJson(jsonData);
       return responseData;
     } else {
       throw Exception("Failed to login!");
