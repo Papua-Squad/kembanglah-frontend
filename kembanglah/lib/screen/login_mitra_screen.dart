@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
@@ -18,7 +18,7 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Controller2 = TextEditingController();
   final Controller1 = TextEditingController();
-
+  final storage = FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -120,6 +120,8 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                               5.0)), // double.infinity is the width and 30 is the height
                                     ),
                                     onPressed: () async {
+                                      ApiLogin login = ApiLogin();
+                                      var data = login.login(username: Controller1.text, password: Controller2.text).toString();
                                       Response response = await post(
                                         Uri.parse('http://159.223.82.24:3000/login'),
                                         headers: {'Content-Type': 'application/json'},
@@ -128,6 +130,12 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                           'password': Controller2.text,
                                         }),
                                       );
+                                      if (response.statusCode == 200) {
+                                        final jsonData = json.decode(response.body);
+                                        final LoginModel responseData = LoginModel.fromJson(jsonData);
+                                        storage.write(key: "Token", value: responseData.data.token);
+                                        print(responseData.data.token);
+                                      }
                                       if (_formKey.currentState!.validate() && response.statusCode == 200) {
                                         Get.offAllNamed('/HomeScreen');
                                       }else if(response.statusCode != 200 && _formKey.currentState!.validate()){
@@ -180,33 +188,5 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
         ]),
       ),
     );
-  }
-}
-class LoginProvider extends ChangeNotifier {
-  LoginProvider({required this.apiLogin});
-
-  final ApiLogin? apiLogin;
-  final constant = ConstUrl();
-
-  Future<void> getLogin(String username, String password) async {
-    LoginModel loginResult = await apiLogin!.login(
-      username: username,
-      password: password,
-    );
-    constant.setToken(loginResult.token);
-    notifyListeners();
-  }
-
-  bool getToken() {
-    if (constant.token != '') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  void logout() {
-    constant.setToken('');
-    notifyListeners();
   }
 }

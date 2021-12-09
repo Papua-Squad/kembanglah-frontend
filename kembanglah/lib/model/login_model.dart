@@ -1,29 +1,37 @@
 import 'dart:convert';
 class LoginModel{
   LoginModel({
-    required this.token,
-    required this.username,
-    required this.password,
+    required this.code,
+    required this.message,
+    required this.data,
   });
 
-  String token;
-  String username;
-  String password;
+  var code;
+  var message;
+  Data data;
 
-  factory LoginModel.fromJson(String str) =>
-      LoginModel.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory LoginModel.fromMap(Map<String, dynamic> json) => LoginModel(
-    token: json["token"],
-    username: json["username"],
-    password: json["user_email"],
-  );
-
-  Map<String, dynamic> toMap() => {
-    "token": token,
-    "username": username,
-    "username": username,
-  };
+  @override
+  String toString() {
+    return 'LoginModel{code: $code, message: $message, data: $data}';
+  }
+  factory LoginModel.fromJson(Map<String, dynamic> json) {
+    return LoginModel(
+        code: json["username"],
+        message: json["repository"],
+        data: Data.fromJson(json["data"])
+    );
+  }
+}
+class Data{
+   String token;
+   Data({required this.token});
+   @override
+  String toString() {
+    return 'Data{token: $token}';
+  }
+   factory Data.fromJson(Map<String, dynamic> json) {
+     return Data(
+         token: json["auth_token"]
+     );
+   }
 }
