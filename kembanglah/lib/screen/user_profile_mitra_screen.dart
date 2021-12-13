@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kembanglah/screen/edit_profile_screen.dart';
-import 'package:kembanglah/screen/info_screen.dart';
 
 class UserProfileMitraScreen extends StatelessWidget{
   const UserProfileMitraScreen({Key? key}) : super(key: key);
@@ -111,8 +110,6 @@ class UserProfileMitraScreen extends StatelessWidget{
             ],
           ),
         )
-
-
     );
   }
 
