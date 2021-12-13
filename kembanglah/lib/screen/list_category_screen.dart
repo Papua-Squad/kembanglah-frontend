@@ -31,13 +31,29 @@ class _ListCategory extends State<ListCategoryScreen>{
       print(data);
       return "Successfull";
     }
-
     @override
     Widget build(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(onPressed: () async {
+              var token = await storage.read(key: "Token");
+              var response = await get(
+                Uri.parse('http://159.223.82.24:3000/api/category/'),
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                  'Authorization': 'Bearer $token',},
+              );
+              setState(() {
+                // Get the JSON data
+                data = json.decode(response.body)['data'];
+              });
+            }, icon: Icon(Icons.refresh))
+          ],
           title: Text("List Category Product"),
-          centerTitle: true,backgroundColor: Color(0xff00A38C),),
+          centerTitle: true
+          ,backgroundColor: Color(0xff00A38C),),
         body: ListView.builder(
             itemCount: data == null ? 0 : data.length,
             itemBuilder: (BuildContext context, int index) {

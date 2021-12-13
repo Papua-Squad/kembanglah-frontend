@@ -10,6 +10,7 @@ import 'package:kembanglah/screen//login_screen.dart';
 import 'package:kembanglah/screen/home_screen.dart';
 import 'package:kembanglah/screen/info_screen.dart';
 import 'package:kembanglah/screen/konfirmasi_pengiriman_screen.dart';
+import 'package:kembanglah/screen/list_category_screen.dart';
 import 'package:kembanglah/screen/list_product_screen.dart';
 import 'package:kembanglah/screen/login_mitra_screen.dart';
 import 'package:kembanglah/screen/onboardingone_screen.dart';
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/UserProfileMitraScreen',
             page: () => UserProfileMitraScreen()),
+        GetPage(name: '/ListCategory', page: () => ListCategoryScreen()),
       ],
       debugShowCheckedModeBanner: false,
     );
