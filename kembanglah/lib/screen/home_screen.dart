@@ -4,6 +4,7 @@ import 'package:kembanglah/screen/add_category_screen.dart';
 import 'package:kembanglah/screen/add_product_screen.dart';
 import 'package:kembanglah/screen/best_seller_product_screen.dart';
 import 'package:kembanglah/screen/info_screen.dart';
+import 'package:kembanglah/screen/list_category_screen.dart';
 import 'package:kembanglah/screen/list_product_screen.dart';
 import 'package:kembanglah/screen/product_mitra_screen.dart';
 import 'package:kembanglah/screen/recommended_product_screen.dart';
@@ -66,7 +67,8 @@ class BerandaScreen extends StatelessWidget {
       "Add Best Seller Product",
       "Add Recomennded Product",
       "List",
-      "Info"
+      "Info",
+      "List Category Screen",
     ];
     List icon = [
       "assets/images/icon_product.png",
@@ -74,7 +76,8 @@ class BerandaScreen extends StatelessWidget {
       "assets/images/icon_best_seller.png",
       "assets/images/icon_recomended_product.png",
       "assets/images/icon_list.png",
-      "assets/images/icon_info.png"
+      "assets/images/icon_info.png",
+      "assets/images/icon_list.png",
     ];
     List Page = <Widget>[
       AddProductScreen(),
@@ -83,6 +86,7 @@ class BerandaScreen extends StatelessWidget {
       RecomendedProductScreen(),
       ListProductScreen(),
       InfoScreen(),
+      ListCategoryScreen()
     ];
     return Scaffold(
         body: Stack(
