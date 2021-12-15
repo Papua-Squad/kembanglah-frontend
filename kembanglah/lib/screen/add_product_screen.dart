@@ -4,10 +4,13 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kembanglah/api/url_api.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import 'package:path/path.dart';
 
 class AddProductScreen extends StatefulWidget {
   @override
@@ -17,6 +20,7 @@ class AddProductScreen extends StatefulWidget {
 class _AddProductScreenState extends State<AddProductScreen> {
   File? _imageFile;
   final ImagePicker _picker = ImagePicker();
+  late List dataCategory = [];
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Controller1 = TextEditingController();
@@ -27,24 +31,33 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final Controller6 = TextEditingController();
   final storage = FlutterSecureStorage();
 
-  String? selectedValue;
-  List categoryItemList = [];
+  String? _selectedValue;
 
-  Future? getAllCategory() async {
-    var response = await http.get(Uri.parse(ConstUrl.baseUrl + 'api/product/'));
-    if (response.statusCode == 200) {
-      var jsonData = json.decode(response.body);
-      setState(() {
-        categoryItemList = jsonData;
-      });
-    }
-    print(categoryItemList);
+  Future<String> getDataCategory() async {
+    var token = await storage.read(key: "Token");
+    var response = await get(
+      Uri.parse('http://159.223.82.24:3000/api/category/'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    setState(() {
+      // Get the JSON data
+      dataCategory = json.decode(response.body)['data'];
+    });
+    var hasil_map = dataCategory.map((e) => e).toList();
+    print(hasil_map.map((e) => e).toList());
+    print(hasil_map.toString());
+
+    return "Successfull";
   }
 
   @override
   void initState() {
     super.initState();
-    getAllCategory();
+    this.getDataCategory();
   }
 
   void _showPicker(context) {
@@ -178,7 +191,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       height: 20,
                     ),
                     TextFormField(
-                      controller: Controller3,
+                      controller: Controller4,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
@@ -202,46 +215,48 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       height: 20,
                     ),
                     DropdownButton(
-                      hint: Text("Pilih Kategori"),
-                      value: selectedValue,
-                      items: categoryItemList.map((categoryItemList) {
-                        return DropdownMenuItem(
-                          child: Text(categoryItemList),
-                          value: categoryItemList,
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedValue = value.toString();
-                        });
-                      },
-                    ),
-                    TextFormField(
-                      controller: Controller3,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                          color: Color(0xff00A38C),
-                        )),
-                        labelText: "Jenis Produk",
-                        labelStyle: TextStyle(
-                          color: Color(0xff00A38C),
-                        ),
-                        contentPadding: EdgeInsets.all(20.0),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Masukan Jenis Produk !';
-                        }
-                        return null;
-                      },
-                    ),
+                        hint: Text("Pilih Kategori"),
+                        value: _selectedValue,
+                        items: dataCategory.map((data) {
+                          print(data['id']);
+                          return DropdownMenuItem(
+                            child: Text(data['name']),
+                            value: data['id'].toString(),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          print("data from value $value");
+                          setState(() {
+                            _selectedValue = value.toString();
+                          });
+                          print("data from selected $_selectedValue");
+                        }),
+                    // TextFormField(
+                    //   controller: Controller3,
+                    //   decoration: InputDecoration(
+                    //     border: OutlineInputBorder(),
+                    //     focusedBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //       color: Color(0xff00A38C),
+                    //     )),
+                    //     labelText: "Jenis Produk",
+                    //     labelStyle: TextStyle(
+                    //       color: Color(0xff00A38C),
+                    //     ),
+                    //     contentPadding: EdgeInsets.all(20.0),
+                    //   ),
+                    //   validator: (value) {
+                    //     if (value == null || value.isEmpty) {
+                    //       return 'Masukan Jenis Produk !';
+                    //     }
+                    //     return null;
+                    //   },
+                    // ),
                     SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      controller: Controller3,
+                      controller: Controller5,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
@@ -339,6 +354,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                   5.0)), // double.infinity is the width and 30 is the height
                         ),
                         onPressed: () async {
+                          uploadFile(
+                              Controller1.text,
+                              Controller2.text,
+                              Controller3.text,
+                              Controller4.text,
+                              Controller5.text,
+                              _selectedValue.toString(),
+                              _imageFile!);
                           // var token = await storage.read(key: "Token");
                           // Response _response = await post(
                           //   Uri.parse(ConstUrl.baseUrl + 'api/product/'),
@@ -427,20 +450,37 @@ class _AddProductScreenState extends State<AddProductScreen> {
 }
 
 uploadFile(String name, String price, String stock, String weight,
-    String description, String category_id) async {
+    String description, String category_id, File imageFile) async {
   var postUri = Uri.parse(ConstUrl.baseUrl + 'api/product/');
   var request = new http.MultipartRequest("POST", postUri);
+  var token = await FlutterSecureStorage().read(key: "Token");
+  var stream = new http.ByteStream(imageFile.openRead());
+  stream.cast();
+  var length = await imageFile.length();
+
+  request.headers.addAll({
+    "Authorization": "Bearer $token",
+    "Content-type": "multipart/form-dataZ"
+  });
   request.fields['name'] = name;
   request.fields['price'] = price;
   request.fields['stock'] = stock;
   request.fields['weight'] = weight;
-  request.fields['description'] = description;
   request.fields['category_id'] = category_id;
-  request.files.add(new http.MultipartFile.fromBytes(
-      'image', await File.fromUri(postUri).readAsBytes(),
-      contentType: new MediaType('image', 'jpeg')));
+  request.fields['description'] = description;
 
-  request.send().then((response) {
-    if (response.statusCode == 200) print("Uploaded!");
-  });
+  request.files.add(await http.MultipartFile('image', stream, length,
+      filename: basename(imageFile.path)));
+
+  var streamedResponse = await request.send();
+  var response = await http.Response.fromStream(streamedResponse);
+
+  if (response.statusCode == 200) {
+    print("Uploaded!");
+    print(token);
+  } else {
+    print("failed $response");
+    print(imageFile);
+  }
+  ;
 }
