@@ -11,7 +11,7 @@ class ListCategoryScreen extends StatefulWidget {
   _ListCategory createState() => _ListCategory();
 }
 class _ListCategory extends State<ListCategoryScreen>{
-    late List data =[];
+    late List data = [];
     final storage = FlutterSecureStorage();
     final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
     Future<String> getData() async{
