@@ -24,14 +24,35 @@ class LoginModel{
 }
 class Data{
    String token;
-   Data({required this.token});
+   Profile profile;
+   Data({required this.token,required this.profile});
+
    @override
   String toString() {
-    return 'Data{token: $token}';
+    return 'Data{token: $token, profile: $profile}';
   }
+
    factory Data.fromJson(Map<String, dynamic> json) {
      return Data(
-         token: json["auth_token"]
+         token: json["auth_token"],
+         profile: Profile.fromJson(json["profile"]),
      );
    }
+}
+class Profile{
+  String full_name;
+  String email;
+  String username;
+
+
+  Profile(this.full_name, this.email, this.username);
+
+  @override
+  String toString() {
+    return 'Profile{full_name: $full_name, email: $email, username: $username}';
+  }
+  factory Profile.fromJson(Map<String, dynamic> json) {
+    return Profile(json["full_name"], json["email"], json["username"]);
+  }
+
 }

@@ -134,7 +134,9 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                         final jsonData = json.decode(response.body);
                                         final LoginModel responseData = LoginModel.fromJson(jsonData);
                                         storage.write(key: "Token", value: responseData.data.token);
+                                        storage.write(key: "full_name", value: responseData.data.profile.full_name);
                                         print(responseData.data.token);
+                                        print(responseData.data.profile.full_name);
                                       }
                                       if (_formKey.currentState!.validate() && response.statusCode == 200) {
                                         Get.offAllNamed('/HomeScreen');
