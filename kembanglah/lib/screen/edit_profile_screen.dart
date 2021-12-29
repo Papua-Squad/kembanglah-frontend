@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EditProfile extends StatelessWidget{
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -147,7 +148,7 @@ class EditProfile extends StatelessWidget{
                               350, 40), // double.infinity is the width and 30 is the height
                         ),
                         onPressed: () {
-
+                            Get.back();
                         },
                         child: Text(
                           'Batal',

@@ -117,27 +117,27 @@ class AddCategoryScreen extends StatelessWidget{
                         },
                         child: Text('Tambah Kategori')),
                     SizedBox(height: 15,),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          side: BorderSide(
-                              color: Color(0xff00A38C),
-                              width: 2.0,
-                              style: BorderStyle.solid),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0)),
-                          minimumSize: Size(
-                              350, 40), // double.infinity is the width and 30 is the height
-                        ),
-                        onPressed: () {
-
-                        },
-                        child: Text(
-                          'Edit Kategori',
-                          style: TextStyle(
-                            color: Color(0xff00A38C),
-                          ),
-                        ))
+                    // ElevatedButton(
+                    //     style: ElevatedButton.styleFrom(
+                    //       primary: Colors.white,
+                    //       side: BorderSide(
+                    //           color: Color(0xff00A38C),
+                    //           width: 2.0,
+                    //           style: BorderStyle.solid),
+                    //       shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(5.0)),
+                    //       minimumSize: Size(
+                    //           350, 40), // double.infinity is the width and 30 is the height
+                    //     ),
+                    //     onPressed: () {
+                    //
+                    //     },
+                    //     child: Text(
+                    //       'Edit Kategori',
+                    //       style: TextStyle(
+                    //         color: Color(0xff00A38C),
+                    //       ),
+                    //     ))
                   ],
                 ),
               ),

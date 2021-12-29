@@ -146,6 +146,7 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                         }),
                                       );
                                       if (response.statusCode == 200) {
+
                                         final jsonData =
                                             json.decode(response.body);
                                         final LoginModel responseData =
@@ -153,15 +154,13 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                         Map<String, dynamic> idUser =
                                             Jwt.parseJwt(
                                                 responseData.data.token);
-
-                                        storage.write(
-                                            key: "Token",
-                                            value: responseData.data.token);
                                         storage.write(
                                             key: "UserId",
                                             value: idUser["id"].toString());
-
+                                        storage.write(key: "Token", value: responseData.data.token);
+                                        storage.write(key: "full_name", value: responseData.data.profile.full_name);
                                         print(responseData.data.token);
+                                        print(responseData.data.profile.full_name);
                                       }
                                       if (_formKey.currentState!.validate() &&
                                           response.statusCode == 200) {

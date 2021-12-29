@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart';
 import 'package:kembanglah/screen/add_category_screen.dart';
 import 'package:kembanglah/screen/add_product_screen.dart';
 import 'package:kembanglah/screen/best_seller_product_screen.dart';
@@ -57,7 +61,44 @@ class _HomeScreen extends State<HomeScreen> {
   }
 }
 
-class BerandaScreen extends StatelessWidget {
+class BerandaScreen extends StatefulWidget {
+  const BerandaScreen({Key? key}) : super(key: key);
+
+  @override
+  _BerandaScreen createState() => _BerandaScreen();
+
+}
+class _BerandaScreen extends State<BerandaScreen>{
+  var storage = FlutterSecureStorage();
+  List data = [];
+  getData() async{
+    var token = await storage.read(key: "Token");
+    var username = await storage.read(key: "username");
+    var response = await get(
+      Uri.parse('http://159.223.82.24:3000/api/user/search/$username'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',},
+    );
+    setState(() {
+      // Get the JSON data
+      data = json.decode(response.body);
+    });
+
+    print(response.body);
+    return "Successfull";
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData().then((value) {
+      setState(() {
+        data = value;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -88,7 +129,9 @@ class BerandaScreen extends StatelessWidget {
       InfoScreen(),
       ListCategoryScreen()
     ];
+
     return Scaffold(
+
         body: Stack(
       clipBehavior: Clip.none,
       children: [
@@ -126,7 +169,7 @@ class BerandaScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              "MITRA",
+                              "Mitra",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 24,
