@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kembanglah/screen/add_category_screen.dart';
-import 'package:kembanglah/screen/add_product_screen.dart';
-import 'package:kembanglah/screen/best_seller_product_screen.dart';
-import 'package:kembanglah/screen/dana_penjualan_screen.dart';
-import 'package:kembanglah/screen/history_pemasukan_screen.dart';
-import 'package:kembanglah/screen/history_pengeluaran_screen.dart';
-import 'package:kembanglah/screen//login_screen.dart';
-import 'package:kembanglah/screen/home_screen.dart';
-import 'package:kembanglah/screen/info_screen.dart';
-import 'package:kembanglah/screen/konfirmasi_pengiriman_screen.dart';
-import 'package:kembanglah/screen/list_category_screen.dart';
-import 'package:kembanglah/screen/list_product_screen.dart';
-import 'package:kembanglah/screen/login_mitra_screen.dart';
+import 'package:kembanglah/screen/Customer/home_user_screen.dart';
+import 'package:kembanglah/screen/Customer/login_user_screen.dart';
+import 'package:kembanglah/screen/Mitra/add_category_screen.dart';
+import 'package:kembanglah/screen/Mitra/add_product_screen.dart';
+import 'package:kembanglah/screen/Mitra/best_seller_product_screen.dart';
+import 'package:kembanglah/screen/Mitra/dana_penjualan_screen.dart';
+import 'package:kembanglah/screen/Mitra/history_pemasukan_screen.dart';
+import 'package:kembanglah/screen/Mitra/history_pengeluaran_screen.dart';
+import 'package:kembanglah/screen/login_screen.dart';
+import 'package:kembanglah/screen/Mitra/home_screen.dart';
+import 'package:kembanglah/screen/Mitra/info_screen.dart';
+import 'package:kembanglah/screen/Mitra/konfirmasi_pengiriman_screen.dart';
+import 'package:kembanglah/screen/Mitra/list_category_screen.dart';
+import 'package:kembanglah/screen/Mitra/list_product_screen.dart';
+import 'package:kembanglah/screen/Mitra/login_mitra_screen.dart';
 import 'package:kembanglah/screen/onboardingone_screen.dart';
 import 'package:kembanglah/screen/onboardingtwo_screen.dart';
-import 'package:kembanglah/screen/pencairan_dana_screen.dart';
-import 'package:kembanglah/screen/prepare_transaksi_screen.dart';
-import 'package:kembanglah/screen/recommended_product_screen.dart';
-import 'package:kembanglah/screen/regist_mitra_screen.dart';
+import 'package:kembanglah/screen/Mitra/pencairan_dana_screen.dart';
+import 'package:kembanglah/screen/Mitra/prepare_transaksi_screen.dart';
+import 'package:kembanglah/screen/Mitra/recommended_product_screen.dart';
+import 'package:kembanglah/screen/Mitra/regist_mitra_screen.dart';
 import 'package:kembanglah/screen/splash_screen.dart';
-import 'package:kembanglah/screen/transaksi_masuk_screen.dart';
-import 'package:kembanglah/screen/transaksi_screen.dart';
-import 'package:kembanglah/screen/user_profile_mitra_screen.dart';
+import 'package:kembanglah/screen/Mitra/transaksi_masuk_screen.dart';
+import 'package:kembanglah/screen/Mitra/transaksi_screen.dart';
+import 'package:kembanglah/screen/Mitra/user_profile_mitra_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -76,6 +78,8 @@ class MyApp extends StatelessWidget {
             name: '/UserProfileMitraScreen',
             page: () => UserProfileMitraScreen()),
         GetPage(name: '/ListCategory', page: () => ListCategoryScreen()),
+        GetPage(name: '/LoginUserScreen', page: () => LoginUserScreen()),
+        GetPage(name: '/HomeUserScreen', page: () => HomeUserScreen()),
       ],
       debugShowCheckedModeBanner: false,
     );
