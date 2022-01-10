@@ -120,6 +120,8 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                               5.0)), // double.infinity is the width and 30 is the height
                                     ),
                                     onPressed: () async {
+                                      ApiLogin login = ApiLogin();
+                                      var data = login.login(username: Controller1.text, password: Controller2.text).toString();
                                       Response response = await post(
                                         Uri.parse('http://159.223.82.24:3000/login'),
                                         headers: {'Content-Type': 'application/json'},
@@ -132,9 +134,9 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                         final jsonData = json.decode(response.body);
                                         final LoginModel responseData = LoginModel.fromJson(jsonData);
                                         storage.write(key: "Token", value: responseData.data.token);
-                                        storage.write(key: "username", value: responseData.data.profile.username);
+                                        storage.write(key: "full_name", value: responseData.data.profile.full_name);
                                         print(responseData.data.token);
-                                        print(responseData.data.profile.username);
+                                        print(responseData.data.profile.full_name);
                                       }
                                       if (_formKey.currentState!.validate() && response.statusCode == 200) {
                                         Get.offAllNamed('/HomeScreen');
