@@ -77,8 +77,8 @@ class _RegistUserScreenState extends State<RegistUserScreen> {
                       children: [
                         buildTextField("Username", ControllerUsername, false),
                         buildTextField("Password", ControllerPassword, true),
-                        buildTextField("Nama Mitra", ControllerMitra, false),
-                        buildTextField("Email Mitra", ControllerEmail, false),
+                        buildTextField("Nama User", ControllerMitra, false),
+                        buildTextField("Email User", ControllerEmail, false),
                       ],
                     ),
                   ),
@@ -105,39 +105,7 @@ class _RegistUserScreenState extends State<RegistUserScreen> {
                         ), // double.infinity is the width and 30 is the height
                       ),
                       onPressed: () async {
-                        Response response = await post(
-                          Uri.parse('http://159.223.82.24:3000/register'),
-                          headers: {'Content-Type': 'application/json'},
-                          body: json.encode({
-                            'full_name': ControllerMitra.text,
-                            'email': ControllerEmail.text,
-                            'username': ControllerUsername.text,
-                            'password': ControllerPassword.text,
-                            'role': "mitra"
-                          }),
-                        );
-                        print(response.body);
-                        if (_formKey.currentState!.validate() &&
-                            response.statusCode == 200) {
-                          Get.toNamed('/LoginMitraScreen');
-                        } else {
-                          showDialog<String>(
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              title: const Text(
-                                  'Pemberitahuan Username/Password salah'),
-                              content: const Text(
-                                  'Apakah Username & Password anda masukan benar?'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () =>
-                                      Get.off('/RegistMitraScreen'),
-                                  child: const Text('OK'),
-                                ),
-                              ],
-                            ),
-                          );
-                        }
+                        Navigator.pop(context);
                       },
                       child: Text(
                         'REGISTER',

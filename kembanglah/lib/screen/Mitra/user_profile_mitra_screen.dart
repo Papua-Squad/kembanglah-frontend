@@ -63,7 +63,7 @@ class _UserProfileMitraScreen extends State<UserProfileMitraScreen>{
                                 backgroundImage: AssetImage('assets/images/profile_pic.png'),
                               ),
                               SizedBox(width: 24,),
-                              Text("${snapshot.data!.full_name}",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)
+                              Text("Mitra",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)
                             ],
                           ),
                         ],
