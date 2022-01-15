@@ -125,109 +125,109 @@ class _BerandaScreen extends State<BerandaScreen>{
     ];
 
     return Scaffold(
-        body: FutureBuilder<Profile>(
-        future: dataProfile,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Container(
-                        padding: EdgeInsets.all(25),
-                        color: Color(0xff00A38C),
-                        height: 300,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 50,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .start,
-                                      children: [
-                                        Text(
-                                          "Hello,",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          "Welcome",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          "${snapshot.data!.full_name}",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.bold),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                CircleAvatar(
-                                  radius: 40,
-                                  backgroundColor: Color(0xff74EDED),
-                                  backgroundImage: AssetImage(
-                                      'assets/images/profile_pic.png'),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )),
-                    Container(
-                      margin: const EdgeInsets.only(top: 200),
-                      child: GridView.count(
-                        crossAxisCount: 2,
-                        padding: EdgeInsets.all(20.0),
-                        children: List.generate(nama.length, (index) {
-                          return GestureDetector(
-                            child: Card(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+      body: FutureBuilder<Profile>(
+          future: dataProfile,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                      padding: EdgeInsets.all(25),
+                      color: Color(0xff00A38C),
+                      height: 300,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 50,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
                                 children: [
-                                  SizedBox(
-                                    height: 60,
-                                  ),
-                                  Center(
-                                    child: Image.asset(icon[index]),
-                                  ),
-                                  SizedBox(
-                                    height: 30,
-                                  ),
-                                  Center(child: Text(nama[index])),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
+                                    children: [
+                                      Text(
+                                        "Hello,",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "Welcome",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "Mitra",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ],
+                                  )
                                 ],
                               ),
+                              CircleAvatar(
+                                radius: 40,
+                                backgroundColor: Color(0xff74EDED),
+                                backgroundImage: AssetImage(
+                                    'assets/images/profile_pic.png'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                  Container(
+                    margin: const EdgeInsets.only(top: 200),
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      padding: EdgeInsets.all(20.0),
+                      children: List.generate(nama.length, (index) {
+                        return GestureDetector(
+                          child: Card(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 60,
+                                ),
+                                Center(
+                                  child: Image.asset(icon[index]),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Center(child: Text(nama[index])),
+                              ],
                             ),
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Page[index]));
-                            },
-                          );
-                        }),
-                      ),
-                    )
-                  ],
-                );
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              } else {
-                return Center(child: const CircularProgressIndicator(),);
-              }
-            }),
+                          ),
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(
+                                    builder: (context) => Page[index]));
+                          },
+                        );
+                      }),
+                    ),
+                  )
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            } else {
+              return Center(child: const CircularProgressIndicator(),);
+            }
+          }),
     );
 
   }

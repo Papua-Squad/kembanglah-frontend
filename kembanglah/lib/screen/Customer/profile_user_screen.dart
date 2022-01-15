@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kembanglah/screen/Customer/edit_profile_user_screen.dart';
+import 'package:kembanglah/screen/login_screen.dart';
 
 class ProfileUserScreen extends StatelessWidget {
   @override
@@ -62,6 +63,7 @@ class ProfileUserScreen extends StatelessWidget {
                               5.0)), // double.infinity is the width and 30 is the height
                     ),
                     onPressed: () {
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()), (route) => false);
                     },
                     child: Text('Logout')),
 

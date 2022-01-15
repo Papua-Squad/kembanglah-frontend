@@ -60,19 +60,19 @@ class CardList extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             image: DecorationImage(
-                              image: AssetImage("assets/images/bunga.png"),
+                              image: AssetImage('assets/images/profile_pic.png'),
                               fit: BoxFit.fill,
                             ),
                           ),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 160,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Bunga Mawar",
+                              "ID - 1234567",
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -83,7 +83,7 @@ class CardList extends StatelessWidget {
                               height: 2,
                             ),
                             Text(
-                              "Teguh P",
+                              "Bunga Mawar",
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Color(0xff808080),
@@ -93,7 +93,7 @@ class CardList extends StatelessWidget {
                               height: 2,
                             ),
                             Text(
-                              "1 Barang",
+                              "Rp. 50.000",
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Color(0xff808080),
@@ -101,6 +101,12 @@ class CardList extends StatelessWidget {
                             ),
                             SizedBox(
                               height: 2,
+                            ),Text(
+                              "Diproses",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xffDC6915),
+                              ),
                             ),
                           ],
                         ),
@@ -110,20 +116,9 @@ class CardList extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    "Total Belanja",
+                    "Teguh P",
                     style: TextStyle(
                       fontSize: 12,
-                      color: Color(0xff808080),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Rp50.000",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
                       color: Color(0xff808080),
                     ),
                   ),
@@ -158,19 +153,19 @@ class CardList extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             image: DecorationImage(
-                              image: AssetImage("assets/images/bunga.png"),
+                              image: AssetImage('assets/images/profile_pic.png'),
                               fit: BoxFit.fill,
                             ),
                           ),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 160,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Bunga Mawar",
+                              "ID - 1234567",
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -181,7 +176,7 @@ class CardList extends StatelessWidget {
                               height: 2,
                             ),
                             Text(
-                              "Teguh P",
+                              "Bunga Tulip",
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Color(0xff808080),
@@ -191,7 +186,7 @@ class CardList extends StatelessWidget {
                               height: 2,
                             ),
                             Text(
-                              "1 Barang",
+                              "Rp. 100.000",
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Color(0xff808080),
@@ -199,6 +194,12 @@ class CardList extends StatelessWidget {
                             ),
                             SizedBox(
                               height: 2,
+                            ),Text(
+                              "Dalam Pengiriman",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xffA39C00),
+                              ),
                             ),
                           ],
                         ),
@@ -208,20 +209,9 @@ class CardList extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    "Total Belanja",
+                    "Teguh P",
                     style: TextStyle(
                       fontSize: 12,
-                      color: Color(0xff808080),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Rp50.000",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
                       color: Color(0xff808080),
                     ),
                   ),
@@ -256,19 +246,19 @@ class CardList extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             image: DecorationImage(
-                              image: AssetImage("assets/images/bunga.png"),
+                              image: AssetImage('assets/images/profile_pic.png'),
                               fit: BoxFit.fill,
                             ),
                           ),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 160,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Bunga Mawar",
+                              "ID - 1234567",
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -279,7 +269,7 @@ class CardList extends StatelessWidget {
                               height: 2,
                             ),
                             Text(
-                              "Teguh P",
+                              "Bunga Bangke",
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Color(0xff808080),
@@ -289,7 +279,7 @@ class CardList extends StatelessWidget {
                               height: 2,
                             ),
                             Text(
-                              "1 Barang",
+                              "Rp. 100.000",
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Color(0xff808080),
@@ -297,6 +287,12 @@ class CardList extends StatelessWidget {
                             ),
                             SizedBox(
                               height: 2,
+                            ),Text(
+                              "Sampai Tujuan",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xff00A38C),
+                              ),
                             ),
                           ],
                         ),
@@ -306,20 +302,9 @@ class CardList extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    "Total Belanja",
+                    "Teguh P",
                     style: TextStyle(
                       fontSize: 12,
-                      color: Color(0xff808080),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Rp50.000",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
                       color: Color(0xff808080),
                     ),
                   ),
