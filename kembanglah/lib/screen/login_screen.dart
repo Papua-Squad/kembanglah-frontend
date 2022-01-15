@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kembanglah/screen/login_mitra_screen.dart';
+import 'package:kembanglah/screen/Customer/login_user_screen.dart';
+import 'package:kembanglah/screen/Mitra/login_mitra_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -30,7 +31,10 @@ class LoginScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                             5.0)), // double.infinity is the width and 30 is the height
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginUserScreen()));
+                  },
                   child: Text('LOGIN USER')),
               SizedBox(
                 height: 10,

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
-import 'package:kembanglah/screen/edit_category.dart';
+import 'package:kembanglah/screen/Mitra/edit_category.dart';
 class ListCategoryScreen extends StatefulWidget {
   @override
   _ListCategory createState() => _ListCategory();
@@ -16,6 +16,7 @@ class _ListCategory extends State<ListCategoryScreen>{
     final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
     Future<String> getData() async{
       var token = await storage.read(key: "Token");
+
       var response = await get(
         Uri.parse('http://159.223.82.24:3000/api/category/'),
         headers: {
@@ -29,6 +30,7 @@ class _ListCategory extends State<ListCategoryScreen>{
       });
 
       print(data);
+      print(token);
       return "Successfull";
     }
     @override

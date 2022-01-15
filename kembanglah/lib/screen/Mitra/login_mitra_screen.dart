@@ -8,7 +8,6 @@ import 'package:kembanglah/api/url_api.dart';
 import 'package:kembanglah/api/user_api.dart';
 import 'package:kembanglah/model/login_model.dart';
 import 'package:provider/provider.dart';
-import 'package:jwt_decode/jwt_decode.dart';
 
 class LoginMitraScreen extends StatefulWidget {
   @override
@@ -28,7 +27,8 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
         backgroundColor: Color(0xff00A38C),
       ),
       body: SingleChildScrollView(
-        child: Stack(clipBehavior: Clip.none, children: [
+        child: Stack(
+            clipBehavior: Clip.none, children: [
           Positioned(
             top: 0,
             right: 0,
@@ -76,15 +76,11 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Color(0xff00A38C),
-                                  )),
-                                  labelText: "Username",
-                                  labelStyle: TextStyle(
-                                    color: Color(0xff00A38C),
+                                      borderSide: BorderSide(color: Color(0xff00A38C),)
                                   ),
-                                  contentPadding: EdgeInsets.all(20.0),
-                                ),
+                                  labelText: "Username",
+                                  labelStyle: TextStyle(color: Color(0xff00A38C),),
+                                  contentPadding: EdgeInsets.all(20.0),),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Masukan Username !';
@@ -101,15 +97,11 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Color(0xff00A38C),
-                                  )),
-                                  labelText: "Password",
-                                  labelStyle: TextStyle(
-                                    color: Color(0xff00A38C),
+                                      borderSide: BorderSide(color: Color(0xff00A38C),)
                                   ),
-                                  contentPadding: EdgeInsets.all(20.0),
-                                ),
+                                  labelText: "Password",
+                                  labelStyle: TextStyle(color: Color(0xff00A38C),),
+                                  contentPadding: EdgeInsets.all(20.0),),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Masukan Password !';
@@ -129,55 +121,34 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                     ),
                                     onPressed: () async {
                                       ApiLogin login = ApiLogin();
-                                      var data = login
-                                          .login(
-                                              username: Controller1.text,
-                                              password: Controller2.text)
-                                          .toString();
+                                      var data = login.login(username: Controller1.text, password: Controller2.text).toString();
                                       Response response = await post(
-                                        Uri.parse(
-                                            'http://159.223.82.24:3000/login'),
-                                        headers: {
-                                          'Content-Type': 'application/json'
-                                        },
+                                        Uri.parse('http://159.223.82.24:3000/login'),
+                                        headers: {'Content-Type': 'application/json'},
                                         body: json.encode({
                                           'username': Controller1.text,
                                           'password': Controller2.text,
                                         }),
                                       );
                                       if (response.statusCode == 200) {
-
-                                        final jsonData =
-                                            json.decode(response.body);
-                                        final LoginModel responseData =
-                                            LoginModel.fromJson(jsonData);
-                                        Map<String, dynamic> idUser =
-                                            Jwt.parseJwt(
-                                                responseData.data.token);
-                                        storage.write(
-                                            key: "UserId",
-                                            value: idUser["id"].toString());
+                                        final jsonData = json.decode(response.body);
+                                        final LoginModel responseData = LoginModel.fromJson(jsonData);
                                         storage.write(key: "Token", value: responseData.data.token);
                                         storage.write(key: "full_name", value: responseData.data.profile.full_name);
                                         print(responseData.data.token);
                                         print(responseData.data.profile.full_name);
                                       }
-                                      if (_formKey.currentState!.validate() &&
-                                          response.statusCode == 200) {
+                                      if (_formKey.currentState!.validate() && response.statusCode == 200) {
                                         Get.offAllNamed('/HomeScreen');
-                                      } else if (response.statusCode != 200 &&
-                                          _formKey.currentState!.validate()) {
+                                      }else if(response.statusCode != 200 && _formKey.currentState!.validate()){
                                         showDialog<String>(
                                           context: context,
-                                          builder: (BuildContext context) =>
-                                              AlertDialog(
+                                          builder: (BuildContext context) => AlertDialog(
                                             title: const Text('Pemberitahuan'),
-                                            content: const Text(
-                                                'Masukan Ulang Username & Password'),
+                                            content: const Text('Masukan Ulang Username & Password'),
                                             actions: <Widget>[
                                               TextButton(
-                                                onPressed: () =>
-                                                    Navigator.pop(context),
+                                                onPressed: () => Navigator.pop(context),
                                                 child: const Text('OK'),
                                               ),
                                             ],
