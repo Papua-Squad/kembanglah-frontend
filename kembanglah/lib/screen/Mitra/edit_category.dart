@@ -1,17 +1,58 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart';
 
-class AddCategoryScreen extends StatelessWidget{
+class EditCategory extends StatefulWidget{
+  int id;
+  String name,type;
+  EditCategory(this.id,this.name,this.type);
+  @override
+  _EditCategory createState() => _EditCategory();
+
+}
+class _EditCategory extends State<EditCategory>{
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Controller2 = TextEditingController();
   final Controller1 = TextEditingController();
+  final storage = FlutterSecureStorage();
+  List data = [];
+  @override
+  void initState() {
+    super.initState();
+      Controller1.text = widget.name;
+      Controller2.text = widget.type;
+  }
+
+  void clearText(){
+    Controller1.clear();
+    Controller2.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
+    print(widget.id);
     // TODO: implement build
     return Scaffold(
         appBar: AppBar(
-          title: Text("Tambah Kategori"),
+          actions: [
+            IconButton(onPressed: () async {
+              var token = await storage.read(key: "Token");
+              var id = widget.id;
+              var response = await delete(
+                Uri.parse('http://159.223.82.24:3000/api/category/$id'),
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                  'Authorization': 'Bearer $token',},
+              );
+              if(response.statusCode == 200) Get.back();
+            }, icon: Icon(Icons.delete))
+          ],
+          title: Text("Edit Kategori"),
           centerTitle: true,backgroundColor: Color(0xff00A38C),),
         body: SingleChildScrollView(
           child:  Container(
@@ -64,19 +105,6 @@ class AddCategoryScreen extends StatelessWidget{
                     SizedBox(height: 260,),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xff00A38C),
-                          minimumSize: Size(350, 40),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  5.0)), // double.infinity is the width and 30 is the height
-                        ),
-                        onPressed: () {
-
-                        },
-                        child: Text('Tambah Kategori')),
-                    SizedBox(height: 15,),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
                           primary: Colors.white,
                           side: BorderSide(
                               color: Color(0xff00A38C),
@@ -87,8 +115,40 @@ class AddCategoryScreen extends StatelessWidget{
                           minimumSize: Size(
                               350, 40), // double.infinity is the width and 30 is the height
                         ),
-                        onPressed: () {
-
+                        onPressed: () async {
+                          var token = await storage.read(key: "Token");
+                          var id = widget.id;
+                          var response = await put(
+                            Uri.parse('http://159.223.82.24:3000/api/category/$id'),
+                            headers: {
+                              'Content-Type': 'application/json',
+                              'Accept': 'application/json',
+                              'Authorization': 'Bearer $token',},
+                            body: json.encode({
+                              'name': Controller1.text,
+                              'type': Controller2.text,
+                            }),
+                          );
+                          print(token);
+                          if (_formKey.currentState!.validate() && response.statusCode == 200) {
+                            clearText();
+                            Get.back();
+                          }else if(response.statusCode != 200 && _formKey.currentState!.validate()){
+                            print(response.body);
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Pemberitahuan'),
+                                content: const Text('Category Gagal Diedit'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
                         },
                         child: Text(
                           'Edit Kategori',

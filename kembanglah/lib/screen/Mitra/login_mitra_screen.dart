@@ -1,7 +1,13 @@
+import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:kembanglah/screen/home_screen.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:http/http.dart';
+import 'package:kembanglah/api/url_api.dart';
+import 'package:kembanglah/api/user_api.dart';
+import 'package:kembanglah/model/login_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginMitraScreen extends StatefulWidget {
   @override
@@ -12,7 +18,7 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Controller2 = TextEditingController();
   final Controller1 = TextEditingController();
-
+  final storage = FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -113,9 +119,41 @@ class _LoginMitraScreen extends State<LoginMitraScreen> {
                                           borderRadius: BorderRadius.circular(
                                               5.0)), // double.infinity is the width and 30 is the height
                                     ),
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
+                                    onPressed: () async {
+                                      ApiLogin login = ApiLogin();
+                                      var data = login.login(username: Controller1.text, password: Controller2.text).toString();
+                                      Response response = await post(
+                                        Uri.parse('http://159.223.82.24:3000/login'),
+                                        headers: {'Content-Type': 'application/json'},
+                                        body: json.encode({
+                                          'username': Controller1.text,
+                                          'password': Controller2.text,
+                                        }),
+                                      );
+                                      if (response.statusCode == 200) {
+                                        final jsonData = json.decode(response.body);
+                                        final LoginModel responseData = LoginModel.fromJson(jsonData);
+                                        storage.write(key: "Token", value: responseData.data.token);
+                                        storage.write(key: "full_name", value: responseData.data.profile.full_name);
+                                        print(responseData.data.token);
+                                        print(responseData.data.profile.full_name);
+                                      }
+                                      if (_formKey.currentState!.validate() && response.statusCode == 200) {
                                         Get.offAllNamed('/HomeScreen');
+                                      }else if(response.statusCode != 200 && _formKey.currentState!.validate()){
+                                        showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) => AlertDialog(
+                                            title: const Text('Pemberitahuan'),
+                                            content: const Text('Masukan Ulang Username & Password'),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(context),
+                                                child: const Text('OK'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
                                       }
                                     },
                                     child: Text(
